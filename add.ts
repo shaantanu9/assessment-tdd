@@ -3,8 +3,7 @@ const addNumberArray = (numbers: number[]) => {
   if (num.length > 0)
     throw new Error(`negatives not allowed ${num.join(",")} `);
   return numbers.reduce((acc, curr) => {
-    if (curr < 0) throw new Error("negatives not allowed");
-    else if (curr > 1000) return acc + 1;
+    if (curr > 1000) return acc + 1;
     return acc + curr;
   });
 };
@@ -24,14 +23,13 @@ const add = (str: string) => {
         i++;
       }
     }
-
+    
     const numbers: any = dummyStr.split(",").map(Number);
     return addNumberArray(numbers);
   }
 
   if (str.includes(",") || str.includes("\n")) {
     const numbers = str.split(/,|\n/).map(Number);
-
     return addNumberArray(numbers);
   }
 
