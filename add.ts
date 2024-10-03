@@ -4,7 +4,7 @@ const addNumberArray = (numbers: number[]) => {
     throw new Error(`negatives not allowed ${num.join(",")} `);
   return numbers.reduce((acc, curr) => {
     if (curr < 0) throw new Error("negatives not allowed");
-    else if (curr>1000) return acc+1
+    else if (curr > 1000) return acc + 1;
     return acc + curr;
   });
 };
@@ -16,8 +16,12 @@ const add = (str: string) => {
 
   if (str.startsWith("//")) {
     const [delimiter, numbersString] = str.split("//")[1].split("\n");
-    const numbers = numbersString.split(delimiter).map(Number);
-    console.log({ delimiter, numbersString, numbers });
+    // const delimiters = delimiter.split(/\[|]/).filter(Boolean);
+    // const reg = delimiters.join("|");
+    const numbers:any = numbersString.split(delimiter).map(Number);
+
+
+    // console.log({ delimiter, delimiters, numbersString,numbers });
 
     return addNumberArray(numbers);
   }
@@ -29,5 +33,11 @@ const add = (str: string) => {
   }
 };
 
-const val = "\n1\n1002,3";
+// const val = "\n1\n1002,3";
+const val = "//;\n1;2";
+// const val = "//[*][%]\n1*2%3"
+// const val = "//[***]\n1***2***3"
 console.log(add(val));
+
+
+export default add;
