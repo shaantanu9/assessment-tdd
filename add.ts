@@ -2,9 +2,10 @@ const addNumberArray = (numbers: number[]) => {
   const num = numbers.filter((n) => n < 0);
   if (num.length > 0)
     throw new Error(`negatives not allowed ${num.join(",")} `);
-  return numbers.reduce((acc, crr) => {
-    if (crr < 0) throw new Error("negatives not allowed");
-    return acc + crr;
+  return numbers.reduce((acc, curr) => {
+    if (curr < 0) throw new Error("negatives not allowed");
+    else if (curr>1000) return acc+1
+    return acc + curr;
   });
 };
 
@@ -28,5 +29,5 @@ const add = (str: string) => {
   }
 };
 
-const val = "\n1\n12,13";
+const val = "\n1\n1002,3";
 console.log(add(val));
