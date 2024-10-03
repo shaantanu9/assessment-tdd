@@ -14,15 +14,21 @@ const add = (str: string) => {
 
   if (str.startsWith("//")) {
     const [delimiter, numbersString] = str.split("//")[1].split("\n");
-    const filterDelimiter = delimiter.split(/\[|\]/)
-    console.log({delimiter,filterDelimiter});
+    const filterDelimiter = delimiter.split(/\[|\]/).filter((n) => n);
+    // console.log({delimiter,filterDelimiter,numbersString,numbersStringLen:numbersString.length});
     let dummyStr = numbersString;
-    for (let i = 0; i < delimiter.length; i++) {
-      dummyStr = dummyStr.replace(delimiter[i], ",");
+    let i = 0;
+    while (i < filterDelimiter.length) {
+      if (dummyStr.includes(filterDelimiter[i])) {
+        console.log(filterDelimiter[i]);
+        dummyStr = dummyStr.replace(filterDelimiter[i], ",");
+        console.log({ dummyStr });
+      } else {
+        i++;
+      }
     }
-    console.log({dummyStr});
     // numbersString.replace
-    const numbers: any = numbersString.split(delimiter).map(Number);
+    const numbers: any = dummyStr.split(",").map(Number);
     return addNumberArray(numbers);
   }
 
@@ -37,8 +43,10 @@ const add = (str: string) => {
 
 // const val = "\n1\n1002,3";
 // const val = "//;\n1;2";
-const val = "//[*][%]\n1*2%3"
-// const val = "//[***]\n1***2***3"
+// const val = "//[*][%]\n1*2%3"
+// const val = "//[***]\n1***2***3";
+// const val = "//[***][---]\n1***2---3";
+const val = "//[***][---][@@@]\n1***2---3@@@4";
 console.log(add(val));
 
 export default add;
