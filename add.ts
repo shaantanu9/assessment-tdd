@@ -12,17 +12,17 @@ const addNumberArray = (numbers: number[]) => {
 const add = (str: string) => {
   if (str == "") return 0;
 
-  if (str.length == 1) return Number(str);
-
   if (str.startsWith("//")) {
     const [delimiter, numbersString] = str.split("//")[1].split("\n");
-    // const delimiters = delimiter.split(/\[|]/).filter(Boolean);
-    // const reg = delimiters.join("|");
-    const numbers:any = numbersString.split(delimiter).map(Number);
-
-
-    // console.log({ delimiter, delimiters, numbersString,numbers });
-
+    const filterDelimiter = delimiter.split(/\[|\]/)
+    console.log({delimiter,filterDelimiter});
+    let dummyStr = numbersString;
+    for (let i = 0; i < delimiter.length; i++) {
+      dummyStr = dummyStr.replace(delimiter[i], ",");
+    }
+    console.log({dummyStr});
+    // numbersString.replace
+    const numbers: any = numbersString.split(delimiter).map(Number);
     return addNumberArray(numbers);
   }
 
@@ -31,13 +31,14 @@ const add = (str: string) => {
     console.log(numbers);
     return addNumberArray(numbers);
   }
+
+  return Number(str);
 };
 
 // const val = "\n1\n1002,3";
-const val = "//;\n1;2";
-// const val = "//[*][%]\n1*2%3"
+// const val = "//;\n1;2";
+const val = "//[*][%]\n1*2%3"
 // const val = "//[***]\n1***2***3"
 console.log(add(val));
-
 
 export default add;
