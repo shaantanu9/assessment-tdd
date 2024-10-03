@@ -19,9 +19,7 @@ const add = (str: string) => {
     let i = 0;
     while (i < filterDelimiter.length) {
       if (dummyStr.includes(filterDelimiter[i])) {
-        console.log(filterDelimiter[i]);
         dummyStr = dummyStr.replace(filterDelimiter[i], ",");
-        console.log({ dummyStr });
       } else {
         i++;
       }
@@ -33,7 +31,7 @@ const add = (str: string) => {
 
   if (str.includes(",") || str.includes("\n")) {
     const numbers = str.split(/,|\n/).map(Number);
-    console.log(numbers);
+
     return addNumberArray(numbers);
   }
 
