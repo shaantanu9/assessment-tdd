@@ -1,6 +1,9 @@
-// const addNumberArray = (numberArray) => {
-//   console.log(numberArray);
-// };
+const addNumberArray = (numbers:number[]) => {
+    return numbers.reduce((acc, crr) =>{
+        if(crr < 0) throw new Error("negatives not allowed")
+        return acc + crr
+    });
+};
 
 const add = (str: string) => {
   if (str == "") return 0;
@@ -17,12 +20,14 @@ const add = (str: string) => {
 
   if (str.includes(",") || str.includes("\n")) {
     const numbers = str.split(/,|\n/).map(Number);
-    return numbers.reduce((acc, crr) => acc + crr);
+    console.log(numbers)
+    return addNumberArray(numbers)
+    // numbers.reduce((acc, crr) => acc + crr);
   }
+
+
 
 };
 
-const val = "//;\n1;2;3"
-console.log(
-    add(val)
-)
+const val = "\n1\n2,-13"
+console.log(add(val))
