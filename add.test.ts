@@ -31,6 +31,13 @@ test("Numbers greater than 1000, add 1 instead", () => {
 test("Other Delimiter Check", () => {
   expect(add("//;\n1;2;3")).toBe(6);
   expect(add("//-\n1-2-3")).toBe(6);
-}
-);
+});
 
+// multiple custom delimiter
+test("Multiple custom delimiter Check", () => {
+  expect(add("//[*][%]\n1*2%3")).toBe(6);
+  expect(add("//[***]\n1***2***3")).toBe(6);
+  expect(add("//[***]\n1***2000***3")).toBe(5); // more than 1000 case
+  expect(add("//[***][---]\n1***2---3")).toBe(6);
+  expect(add("//[***][---][@@@]\n1***2---3@@@4")).toBe(10);
+});

@@ -15,7 +15,6 @@ const add = (str: string) => {
   if (str.startsWith("//")) {
     const [delimiter, numbersString] = str.split("//")[1].split("\n");
     const filterDelimiter = delimiter.split(/\[|\]/).filter((n) => n);
-    // console.log({delimiter,filterDelimiter,numbersString,numbersStringLen:numbersString.length});
     let dummyStr = numbersString;
     let i = 0;
     while (i < filterDelimiter.length) {
@@ -27,7 +26,7 @@ const add = (str: string) => {
         i++;
       }
     }
-    // numbersString.replace
+
     const numbers: any = dummyStr.split(",").map(Number);
     return addNumberArray(numbers);
   }
@@ -46,7 +45,7 @@ const add = (str: string) => {
 // const val = "//[*][%]\n1*2%3"
 // const val = "//[***]\n1***2***3";
 // const val = "//[***][---]\n1***2---3";
-const val = "//[***][---][@@@]\n1***2---3@@@4";
-console.log(add(val));
+// const val = "//[***][---][@@@]\n1***2---3@@@4";
+// console.log(add(val));
 
 export default add;
